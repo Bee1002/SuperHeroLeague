@@ -9,6 +9,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.superheroleague.R
 import com.example.superheroleague.data.Superhero
+import com.example.superheroleague.databinding.ActivityDetailBinding
+import com.example.superheroleague.databinding.ActivityMainBinding
 import com.example.superheroleague.utils.SuperheroService
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -21,15 +23,16 @@ class DetailActivity : AppCompatActivity() {
         const val SUPERHERO_ID = "SUPERHERO_ID"
     }
 
-    lateinit var nameTextView: TextView
-    lateinit var avatarImageView: ImageView
+    lateinit var binding: ActivityDetailBinding
 
     lateinit var superhero: Superhero
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_detail)
+
+        binding =  ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -37,9 +40,6 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val id = intent.getStringExtra(SUPERHERO_ID)!!
-
-        nameTextView = findViewById(R.id.nameTextView)
-        avatarImageView = findViewById(R.id.avatarImageView)
 
         getSuperheroById(id)
     }
@@ -62,7 +62,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
-        nameTextView.text = superhero.name
-        Picasso.get().load(superhero.image.url).into(avatarImageView)
+        supportActionBar?.title = superhero.name
+        supportActionBar?.title = superhero.biography.realName
+        Picasso.get().load(superhero.image.url).into(binding.avatarImageView)
     }
 }
