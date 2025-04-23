@@ -63,7 +63,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun loadData() {
         supportActionBar?.title = superhero.name
-        supportActionBar?.title = superhero.biography.realName
+        supportActionBar?.subtitle = superhero.biography.realName
         Picasso.get().load(superhero.image.url).into(binding.avatarImageView)
+
+        binding.publisherTextView.text = superhero.biography.publisher
+        binding.placeOfBirthTextView.text = superhero.biography.placeOfBirth
+        binding.aligmentTextView.text = superhero.biography.aligment
     }
 }
