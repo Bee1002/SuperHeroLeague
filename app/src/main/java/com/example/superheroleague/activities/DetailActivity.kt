@@ -68,6 +68,6 @@ class DetailActivity : AppCompatActivity() {
 
         binding.publisherTextView.text = superhero.biography.publisher
         binding.placeOfBirthTextView.text = superhero.biography.placeOfBirth
-        binding.aligmentTextView.text = superhero.biography.aligment
+        binding.alignmentTextView.text = superhero.biography.alignment
     }
 }

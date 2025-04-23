@@ -17,7 +17,7 @@ data class Biography(
     @SerializedName("full-name") val realName: String,
     @SerializedName("place-of-birth") val placeOfBirth: String,
     val publisher: String,
-    val aligment: String
+    val alignment: String
 )
 
 data class Image(

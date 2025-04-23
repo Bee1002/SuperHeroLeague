@@ -54,7 +54,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:layout_margin="4dp"
+                        android:layout_marginStart="4dp"
                         tools:text="DC Comics:"
                         android:textStyle="bold"/>
 
@@ -78,7 +78,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:layout_margin="4dp"
+                        android:layout_marginStart="4dp"
                         tools:text="Kripton:"
                         android:textStyle="bold"/>
 
@@ -94,15 +94,15 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Aligment:"
+                        android:text="Alignment:"
                         android:textAlignment="textEnd"/>
 
                     <TextView
-                        android:id="@+id/aligmentTextView"
+                        android:id="@+id/alignmentTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:layout_margin="4dp"
+                        android:layout_marginStart="4dp"
                         tools:text="Good:"
                         android:textStyle="bold"/>
 
