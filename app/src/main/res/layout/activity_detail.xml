@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -10,16 +10,26 @@
 
     <ImageView
         android:id="@+id/avatarImageView"
-        android:layout_width="280dp"
-        android:layout_height="360dp"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
         android:scaleType="centerCrop"
         tools:src="@drawable/ic_launcher_background"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        app:cardCornerRadius="32dp"
+        android:layout_marginTop="-32dp"
+        android:layout_marginBottom="-32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatarImageView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,11 +37,13 @@
             android:orientation="vertical">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/navigationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu="@menu/activity_main_menu"/>
+                app:menu="@menu/activity_detail_navigation" />
 
             <LinearLayout
+                android:id="@+id/contentBiography"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -47,16 +59,16 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Publisher:"
-                        android:textAlignment="textEnd"/>
+                        android:textAlignment="textEnd" />
 
                     <TextView
                         android:id="@+id/publisherTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:layout_marginStart="4dp"
-                        tools:text="DC Comics:"
-                        android:textStyle="bold"/>
+                        android:layout_weight="2"
+                        android:textStyle="bold"
+                        tools:text="DC Comics:" />
 
                 </LinearLayout>
 
@@ -71,16 +83,16 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Place of Birth:"
-                        android:textAlignment="textEnd"/>
+                        android:textAlignment="textEnd" />
 
                     <TextView
                         android:id="@+id/placeOfBirthTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:layout_marginStart="4dp"
-                        tools:text="Kripton:"
-                        android:textStyle="bold"/>
+                        android:layout_weight="2"
+                        android:textStyle="bold"
+                        tools:text="Kripton:" />
 
                 </LinearLayout>
 
@@ -95,19 +107,75 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Alignment:"
-                        android:textAlignment="textEnd"/>
+                        android:textAlignment="textEnd" />
 
                     <TextView
                         android:id="@+id/alignmentTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:layout_marginStart="4dp"
-                        tools:text="Good:"
-                        android:textStyle="bold"/>
+                        android:layout_weight="2"
+                        android:textStyle="bold"
+                        tools:text="Good:" />
 
                 </LinearLayout>
 
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/contentAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="appearance" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/contentStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Intelligence:"
+                        />
+
+                    <TextView
+                        android:id="@+id/intelligenceTextView"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:textStyle="bold"
+                        tools:text="100:" />
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/intelligenceProgres"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:progress="30"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -116,4 +184,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

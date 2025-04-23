@@ -1,6 +1,7 @@
 package com.example.superheroleague.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -31,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding =  ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -42,6 +43,22 @@ class DetailActivity : AppCompatActivity() {
         val id = intent.getStringExtra(SUPERHERO_ID)!!
 
         getSuperheroById(id)
+
+        binding.navigationView.setOnItemSelectedListener { menuItem ->
+            binding.contentBiography.visibility = View.GONE
+            binding.contentStats.visibility = View.GONE
+            binding.contentAppearance.visibility = View.GONE
+            when (menuItem.itemId) {
+                R.id.menu_biography -> binding.contentBiography.visibility = View.VISIBLE
+                R.id.menu_appearance -> binding.contentAppearance.visibility = View.VISIBLE
+                R.id.menu_stats -> binding.contentStats.visibility = View.VISIBLE
+
+            }
+
+            true
+        }
+
+        binding.navigationView.selectedItemId = R.id.menu_biography
     }
 
     fun getSuperheroById(id: String) {
@@ -66,8 +83,14 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.subtitle = superhero.biography.realName
         Picasso.get().load(superhero.image.url).into(binding.avatarImageView)
 
+        // Biography
         binding.publisherTextView.text = superhero.biography.publisher
         binding.placeOfBirthTextView.text = superhero.biography.placeOfBirth
         binding.alignmentTextView.text = superhero.biography.alignment
+
+        // Stats
+        binding.intelligenceTextView.text = "${superhero.stats.intelligence.toIntOrNull() ?: 0}"
+        binding.intelligenceProgres.progress = superhero.stats.intelligence.toIntOrNull() ?: 0
+
     }
 }
