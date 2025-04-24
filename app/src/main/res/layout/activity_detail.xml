@@ -42,15 +42,25 @@
                 android:layout_height="wrap_content"
                 app:menu="@menu/activity_detail_navigation" />
 
-            <include
-                android:id="@+id/contentBiography"
-                layout="@layout/detail_content_biography"/>
-            <include
-                android:id="@+id/contentAppearance"
-                layout="@layout/detail_content_appearance"/>
-            <include
-                android:id="@+id/contentStats"
-                layout="@layout/detail_content_powerstats"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <include
+                    android:id="@+id/contentBiography"
+                    layout="@layout/detail_content_biography"/>
+                <include
+                    android:id="@+id/contentAppearance"
+                    layout="@layout/detail_content_appearance"/>
+                <include
+                    android:id="@+id/contentStats"
+                    layout="@layout/detail_content_powerstats"/>
+
+
+
+            </FrameLayout>
+
 
         </LinearLayout>
 

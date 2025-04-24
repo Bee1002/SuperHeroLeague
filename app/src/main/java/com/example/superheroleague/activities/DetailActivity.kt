@@ -1,6 +1,7 @@
 package com.example.superheroleague.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -40,6 +41,8 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val id = intent.getStringExtra(SUPERHERO_ID)!!
 
         getSuperheroById(id)
@@ -59,6 +62,16 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.navigationView.selectedItemId = R.id.menu_biography
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     fun getSuperheroById(id: String) {
@@ -87,12 +100,40 @@ class DetailActivity : AppCompatActivity() {
         binding.contentBiography.publisherTextView.text = superhero.biography.publisher
         binding.contentBiography.placeOfBirthTextView.text = superhero.biography.placeOfBirth
         binding.contentBiography.alignmentTextView.text = superhero.biography.alignment
+        binding.contentBiography.alignmentTextView.setTextColor(getColor(superhero.getAlignmentColor()))
         binding.contentBiography.occupationTextView.text = superhero.work.occupation
         binding.contentBiography.baseTextView.text = superhero.work.base
 
-        // Stats
-        binding.contentStats.intelligenceTextView.text = "${superhero.stats.intelligence.toIntOrNull() ?: 0}"
-        binding.contentStats.intelligenceProgress.progress = superhero.stats.intelligence.toIntOrNull() ?: 0
+        //Appearance
+        binding.contentAppearance.genderTextView.text = superhero.appearance.gender
+        binding.contentAppearance.raceTextView.text = superhero.appearance.race
+        binding.contentAppearance.eyeColorTextView.text = superhero.appearance.eyeColor
+        binding.contentAppearance.hairColorTextView.text = superhero.appearance.hairColor
+        binding.contentAppearance.weightTextView.text = superhero.appearance.weight[1]
+        binding.contentAppearance.heightTextView.text = superhero.appearance.height[1]
 
+
+        // Stats
+        with(superhero.stats) {
+
+            binding.contentStats.intelligenceTextView.text = "$intelligence"
+            binding.contentStats.intelligenceProgress.progress = intelligence
+
+            binding.contentStats.strengthTextView.text = "$strength"
+            binding.contentStats.strengthProgress.progress = strength
+
+            binding.contentStats.speedTextView.text = "$speed"
+            binding.contentStats.speedProgress.progress = speed
+
+            binding.contentStats.durabilityTextView.text = "$durability"
+            binding.contentStats.durabilityProgress.progress = durability
+
+            binding.contentStats.powerTextView.text = "$power"
+            binding.contentStats.powerProgress.progress = power
+
+            binding.contentStats.combatTextView.text = "$combat"
+            binding.contentStats.combatProgress.progress = combat
+
+        }
     }
 }
